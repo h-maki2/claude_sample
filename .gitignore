@@ -4,7 +4,7 @@ src/node_modules/
 mysql-data/
 
 src/.phpunit.result.cache
-src/bootstrap/cache/
+src/bootstrap/cache/*.php
 src/storage/framework/cache/
 src/storage/logs/
 src/storage/app/
