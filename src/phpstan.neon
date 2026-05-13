@@ -1,0 +1,23 @@
+includes:
+    - vendor/larastan/larastan/extension.neon
+
+parameters:
+    level: 6
+
+    paths:
+        - app
+        - Modules/MeetingRoomManagement/app
+        - Modules/ReservationManagement/app
+
+    excludePaths:
+        analyse:
+            - app/Providers
+            - Modules/*/app/Providers
+            - Modules/*/app/Infrastructure/Repository/Eloquent/**/*Model.php
+
+    ignoreErrors:
+        -
+            identifier: property.notFound
+            message: '#Access to an undefined property Modules\\.+\\Infrastructure\\Repository\\Eloquent\\.+\\.+Model::\$#'
+
+    tmpDir: storage/framework/cache/phpstan

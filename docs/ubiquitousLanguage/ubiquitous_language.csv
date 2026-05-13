@@ -1,0 +1,13 @@
+ビジネスサブドメイン,ビジネスサブドメイン英名,日本語名,英語名,意味,使い方
+予約管理,ReservationManagement,予約,Reservation,特定の会議室を特定の時間帯で使用する権利。,予約を登録する、予約内容を変更する。
+予約管理,ReservationManagement,予約名,ReservationName,予約を識別するための名称（50文字以内）。,「第○回定例MTG」など予約時に必須入力。
+予約管理,ReservationManagement,担当者名,ContactPersonName,予約の責任者の氏名（30文字以内）。,予約時の必須項目として使用。
+予約管理,ReservationManagement,連絡先,ContactEmail,担当者のメールアドレス。外部公開不可。,予約完了通知や変更連絡に使用。バリデーションあり。
+予約管理,ReservationManagement,予約時間帯,ReservationTimeRange,予約の開始から終了までの期間。8:00〜22:00の間。,最短30分〜最長4時間を守って選択する。
+予約管理,ReservationManagement,予約受付可能期間,ReservablePeriod,予約が可能な将来の期間（当日〜14日先まで）。,過去日や15日以上先の予約を制限する際に参照。
+予約管理,ReservationManagement,バッファタイム,BufferTime,予約と予約の間に必要な最低限の空き時間（10分）。,次の予約が「前の予約終了 + 10分」以降か判定する。
+会議室管理,MeetingRoomManagement,会議室,MeetingRoom,会社が保有し、予約の対象となる物理的な部屋。,会議室を登録する、会議室情報を更新する。
+会議室管理,MeetingRoomManagement,会議室ID,MeetingRoomId,会議室を一意に識別するためのID。,予約管理側から特定の会議室を指し示す際に使用。
+会議室管理,MeetingRoomManagement,会議室名,MeetingRoomName,会議室の名称（50文字以内）。,会議室一覧や予約画面での表示に使用。
+会議室管理,MeetingRoomManagement,定員,Capacity,会議室に収容可能な人数（1名〜50名）。,会議室の登録・変更時に設定。
+会議室管理,MeetingRoomManagement,備品,Equipment,会議室に備え付けられている物品。,ホワイトボードやプロジェクター等から複数選択。

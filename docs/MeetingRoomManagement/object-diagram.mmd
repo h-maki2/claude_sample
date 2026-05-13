@@ -1,0 +1,56 @@
+%% オブジェクト図: 会議室管理
+classDiagram
+
+    class meetingRoom1 {
+        <<MeetingRoom>>
+        meetingRoomId = "0195f1a0-1234-7abc-8def-000000000001"
+        name = "第1会議室"
+        capacity = 10
+        equipments = [WHITEBOARD, PROJECTOR]
+    }
+
+    class meetingRoomId1 {
+        <<MeetingRoomId>>
+        value = "0195f1a0-1234-7abc-8def-000000000001"
+    }
+
+    class meetingRoomName1 {
+        <<MeetingRoomName>>
+        value = "第1会議室"
+    }
+
+    class capacity1 {
+        <<Capacity>>
+        value = 10
+    }
+
+    class meetingRoom2 {
+        <<MeetingRoom>>
+        meetingRoomId = "0195f1a0-5678-7def-9012-000000000002"
+        name = "第2会議室"
+        capacity = 6
+        equipments = [MONITOR, VIDEO_CONFERENCE_SYSTEM]
+    }
+
+    class meetingRoomId2 {
+        <<MeetingRoomId>>
+        value = "0195f1a0-5678-7def-9012-000000000002"
+    }
+
+    class meetingRoomName2 {
+        <<MeetingRoomName>>
+        value = "第2会議室"
+    }
+
+    class capacity2 {
+        <<Capacity>>
+        value = 6
+    }
+
+    meetingRoom1 --> meetingRoomId1 : has
+    meetingRoom1 --> meetingRoomName1 : has
+    meetingRoom1 --> capacity1 : has
+
+    meetingRoom2 --> meetingRoomId2 : has
+    meetingRoom2 --> meetingRoomName2 : has
+    meetingRoom2 --> capacity2 : has

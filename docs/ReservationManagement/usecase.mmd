@@ -1,0 +1,15 @@
+%% ユースケース図: 予約管理
+graph LR
+    User["👤 利用者"]
+
+    subgraph system ["RoomBooker 予約管理システム（ReservationManagement）"]
+        UC1["会議室を予約する"]
+        UC2["空き状況を確認する"]
+        UC3["予約をキャンセルする"]
+        UC4["予約を変更する"]
+    end
+
+    User --> UC1
+    User --> UC2
+    User --> UC3
+    User --> UC4

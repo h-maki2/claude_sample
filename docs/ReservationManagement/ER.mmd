@@ -1,0 +1,23 @@
+%% ER図: 予約管理
+erDiagram
+
+    MEETING_ROOM {
+        string meeting_room_id PK "主キー（UUIDv7）※docs/MeetingRoomManagement/ER.mmd で管理"
+        string name "会議室名（50文字以内）"
+        int capacity "定員（1〜50名）"
+    }
+
+    RESERVATION {
+        string reservation_id PK "主キー（UUIDv7）"
+        string meeting_room_id FK "外部キー: MEETING_ROOM"
+        string name "予約名（50文字以内）"
+        string contact_person_name "担当者名（30文字以内）"
+        string contact_email "連絡先メール（外部公開不可）"
+        datetime started_at "開始日時"
+        datetime ended_at "終了日時"
+        int status "ステータス（1: CONFIRMED / 2: CANCELLED）"
+        datetime created_at "作成日時"
+        datetime updated_at "更新日時"
+    }
+
+    MEETING_ROOM ||--o{ RESERVATION : "has"

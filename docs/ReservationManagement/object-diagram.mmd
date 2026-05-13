@@ -1,0 +1,57 @@
+%% オブジェクト図: 予約管理
+classDiagram
+
+    class reservation1 {
+        <<Reservation>>
+        status = "CONFIRMED"
+    }
+
+    class reservationId1 {
+        <<ReservationId>>
+        value = "RES-001"
+    }
+
+    class meetingRoomId1 {
+        <<MeetingRoomId>>
+        value = "ROOM-A01"
+    }
+
+    class reservationName1 {
+        <<ReservationName>>
+        value = "第3回プロジェクト定例"
+    }
+
+    class contactPersonName1 {
+        <<ContactPersonName>>
+        value = "山田太郎"
+    }
+
+    class contactEmail1 {
+        <<ContactEmail>>
+        value = "yamada@example.com"
+    }
+
+    class reservationTimeRange1 {
+        <<ReservationTimeRange>>
+        startAt = "2026-05-01 10:00"
+        endAt = "2026-05-01 11:30"
+    }
+
+    class reservablePeriod1 {
+        <<ReservablePeriod>>
+        maxDaysAhead = 14
+    }
+
+    class bufferTime1 {
+        <<BufferTime>>
+        minutes = 10
+    }
+
+    reservation1 --> reservationId1 : has
+    reservation1 --> meetingRoomId1 : references
+    reservation1 --> reservationName1 : has
+    reservation1 --> contactPersonName1 : has
+    reservation1 --> contactEmail1 : has
+    reservation1 --> reservationTimeRange1 : has
+    reservation1 --> reservablePeriod1 : validates with
+    reservation1 --> bufferTime1 : applies

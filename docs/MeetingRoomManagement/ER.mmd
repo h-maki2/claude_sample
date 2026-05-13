@@ -1,0 +1,15 @@
+%% ER図: 会議室管理
+erDiagram
+
+    MEETING_ROOM {
+        string meeting_room_id PK "主キー（UUIDv7）"
+        string name "会議室名（50文字以内）"
+        int capacity "定員（1〜50名）"
+    }
+
+    MEETING_ROOM_EQUIPMENT {
+        string meeting_room_id PK, FK "外部キー: MEETING_ROOM"
+        int equipment PK "備品種別（1: WHITEBOARD / 2: PROJECTOR / 3: MONITOR / 4: VIDEO_CONFERENCE_SYSTEM）"
+    }
+
+    MEETING_ROOM ||--o{ MEETING_ROOM_EQUIPMENT : "has"

@@ -1,0 +1,59 @@
+services:
+  # -------------------------------------------------------
+  # PHP 8.4 + Laravel + Claude Code
+  # -------------------------------------------------------
+  app:
+    build:
+      context: .
+      dockerfile: docker/php/Dockerfile
+    container_name: laravel-app
+    volumes:
+      - .:/var/www/html
+    depends_on:
+      - mysql
+    networks:
+      - laravel-net
+    tty: true
+    stdin_open: true
+
+  # -------------------------------------------------------
+  # Nginx
+  # -------------------------------------------------------
+  nginx:
+    build:
+      context: .
+      dockerfile: docker/nginx/Dockerfile
+    container_name: laravel-nginx
+    ports:
+      - "9090:80"
+    volumes:
+      - .:/var/www/html:ro
+    depends_on:
+      - app
+    networks:
+      - laravel-net
+
+  # -------------------------------------------------------
+  # MySQL 8.0
+  # -------------------------------------------------------
+  mysql:
+    image: mysql:8.0
+    container_name: laravel-mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: laravel
+      MYSQL_USER: laravel
+      MYSQL_PASSWORD: secret
+    ports:
+      - "3320:3306"
+    volumes:
+      - mysql-data:/var/lib/mysql
+    networks:
+      - laravel-net
+
+volumes:
+  mysql-data:
+
+networks:
+  laravel-net:
+    driver: bridge

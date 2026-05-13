@@ -1,0 +1,15 @@
+%% ユースケース図: 会議室管理
+graph LR
+    Admin["👤 管理者"]
+
+    subgraph system ["会議室管理システム (MeetingRoomManagement)"]
+        UC1["会議室を登録する"]
+        UC2["会議室を編集する"]
+        UC3["会議室を削除する"]
+        UC4["会議室一覧を確認する"]
+    end
+
+    Admin --> UC1
+    Admin --> UC2
+    Admin --> UC3
+    Admin --> UC4

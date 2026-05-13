@@ -1,0 +1,90 @@
+%% ドメインモデル図: 予約管理
+classDiagram
+
+    class Reservation {
+        <<AggregateRoot>>
+        +ReservationId reservationId
+        +MeetingRoomId meetingRoomId
+        +ReservationName name
+        +ContactPersonName contactPerson
+        +ContactEmail email
+        +ReservationTimeRange timeRange
+        +ReservationStatus status
+    }
+
+    class ReservationId {
+        <<ValueObject>>
+        +String value
+    }
+
+    class ReservationName {
+        <<ValueObject>>
+        +String value
+    }
+
+    class ContactPersonName {
+        <<ValueObject>>
+        +String value
+    }
+
+    class ContactEmail {
+        <<ValueObject>>
+        +String value
+    }
+
+    class ReservationTimeRange {
+        <<ValueObject>>
+        +DateTimeImmutable startAt
+        +DateTimeImmutable endAt
+    }
+
+    class ReservationStatus {
+        <<enumeration>>
+        CONFIRMED
+        CANCELLED
+    }
+
+    class ReservablePeriod {
+        <<Specification>>
+        +Int maxDaysAhead
+    }
+
+    class BufferTime {
+        <<Specification>>
+        +Int minutes
+    }
+
+    class MeetingRoomId {
+        <<ValueObject>>
+        +String value
+    }
+
+    Reservation "1" *-- "1" ReservationId : has
+    Reservation "1" *-- "1" MeetingRoomId : references
+    Reservation "1" *-- "1" ReservationName : has
+    Reservation "1" *-- "1" ContactPersonName : has
+    Reservation "1" *-- "1" ContactEmail : has
+    Reservation "1" *-- "1" ReservationTimeRange : has
+    Reservation "1" *-- "1" ReservationStatus : has
+    Reservation "0..*" --> "1" ReservablePeriod : validates with
+    Reservation "0..*" --> "1" BufferTime : applies
+
+    note for ReservationId "・UUIDv7形式（時刻ベースのソート可能なUUID）"
+    note for Reservation "・同一会議室で時間帯が重複する予約は作成できない
+・バッファタイム違反の予約は作成できない
+・キャンセル済みの予約は変更・キャンセル不可"
+    note for ReservationName "・1〜50文字以内"
+    note for ContactPersonName "・1〜30文字以内"
+    note for ContactEmail "・メールアドレス形式（RFC準拠）
+・APIレスポンス・一覧画面に含めない（外部公開不可）"
+    note for ReservationTimeRange "・8:00〜22:00の範囲内
+・最短30分・最長4時間
+・終了時刻は開始時刻より後でなければならない"
+    note for ReservationStatus "・CONFIRMED: 予約確定
+・CANCELLED: キャンセル済み"
+    note for ReservablePeriod "・当日〜14日先までのみ予約可能
+・過去日・15日以上先は予約不可"
+    note for BufferTime "・前の予約終了から10分以上の空きが必要
+・前の予約終了時刻 + 10分 以降でなければ予約不可"
+    note for MeetingRoomId "・MeetingRoomManagementサブドメインの会議室をIDで参照
+・UUIDv7形式"

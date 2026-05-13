@@ -1,0 +1,11 @@
+{
+    "name": "MeetingRoomManagement",
+    "alias": "meetingroommanagement",
+    "description": "",
+    "keywords": [],
+    "priority": 0,
+    "providers": [
+        "Modules\\MeetingRoomManagement\\Providers\\MeetingRoomManagementServiceProvider"
+    ],
+    "files": []
+}

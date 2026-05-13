@@ -1,0 +1,50 @@
+%% ドメインモデル図: 会議室管理
+classDiagram
+
+    class MeetingRoom {
+        <<AggregateRoot>>
+        +MeetingRoomId meetingRoomId
+        +MeetingRoomName name
+        +Capacity capacity
+        +Set~Equipment~ equipments
+    }
+
+    class MeetingRoomId {
+        <<ValueObject>>
+        +String value
+    }
+
+    class MeetingRoomName {
+        <<ValueObject>>
+        +String value
+    }
+
+    class Capacity {
+        <<ValueObject>>
+        +Int value
+    }
+
+    class Equipment {
+        <<enumeration>>
+        WHITEBOARD = 1
+        PROJECTOR = 2
+        MONITOR = 3
+        VIDEO_CONFERENCE_SYSTEM = 4
+    }
+
+    MeetingRoom "1" *-- "1" MeetingRoomId : has
+    MeetingRoom "1" *-- "1" MeetingRoomName : has
+    MeetingRoom "1" *-- "1" Capacity : has
+    MeetingRoom "1" *-- "0..*" Equipment : has
+
+    note for MeetingRoomId "・UUIDv7形式（時刻ベースのソート可能なUUID）"
+    note for MeetingRoom "・未来の予約が存在する場合は削除できない
+・会議室名・定員はすべて必須
+・会議室名・定員数・備品は変更可能"
+    note for MeetingRoomName "・1文字以上50文字以内"
+    note for Capacity "・1名以上50名以下の整数"
+    note for Equipment "・WHITEBOARD: ホワイトボード
+・PROJECTOR: プロジェクター
+・MONITOR: モニター
+・VIDEO_CONFERENCE_SYSTEM: ビデオ会議システム
+・複数選択可（0件以上）"

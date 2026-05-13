@@ -1,0 +1,12 @@
+{
+  "permissions": {
+    "ask": [
+      "Bash(curl *)",
+      "Bash(curl)",
+      "Bash(*curl*)"
+    ],
+    "allow": [
+      "*"
+    ]
+  }
+}
