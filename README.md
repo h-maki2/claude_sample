@@ -83,18 +83,10 @@ composer install
 # 5. 環境ファイルを作成
 cp .env.example .env
 
-# 6. .env を編集して DB 接続先を MySQL に変更
-#    DB_CONNECTION=mysql
-#    DB_HOST=mysql
-#    DB_PORT=3306
-#    DB_DATABASE=laravel
-#    DB_USERNAME=laravel
-#    DB_PASSWORD=secret
-
-# 7. アプリキーを生成
+# 6. アプリキーを生成
 php artisan key:generate
 
-# 8. マイグレーションを実行
+# 7. マイグレーションを実行
 php artisan migrate
 ```
 
