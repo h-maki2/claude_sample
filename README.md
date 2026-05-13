@@ -1,5 +1,3 @@
-# Claude Code エージェント活用 サンプルプロジェクト
-
 **Claude Code のスキル・サブエージェント・スラッシュコマンドを活用した開発自動化のサンプル実装です。**
 
 ドキュメント先行 → TDD 実装というワークフローを、Claude Code の各種機能でどう自動化・標準化できるかを示すことが主目的です。
@@ -36,7 +34,7 @@
 | サブドメイン | 説明 |
 |---|---|
 | `MeetingRoomManagement`（会議室管理） | 会議室の登録・変更・削除・一覧・詳細 |
-| `ReservationManagement`（予約管理） | 10分バッファタイム付きのダブルブッキング防止予約 |
+| `ReservationManagement`（予約管理） | 会議室の予約・予約変更・予約キャンセル・予約一覧 |
 
 ---
 
@@ -59,9 +57,7 @@
 
 ### 前提条件
 
-- Docker / Docker Compose がインストール済みであること
-- Claude Code CLI がインストール済みであること（`npm install -g @anthropic-ai/claude-code`）
-- Anthropic API キーを持っていること
+Docker / Docker Compose がインストール済みであること
 
 ### 手順
 
@@ -96,7 +92,7 @@ php artisan migrate
 # コンテナ内から起動
 docker compose exec app bash
 cd /var/www/html
-ANTHROPIC_API_KEY=<your-api-key> claude
+claude
 ```
 
 ---
